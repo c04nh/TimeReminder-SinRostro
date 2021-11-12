@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="index.css" />
   </head>
-  <body>
+  <body background="../imgs/background-img.jpeg">
     <!-- 
 		  글을 쓰는 기능: input type="textarea"
 		  첨부파일을 넣는 기능: input type="file" name=""/method="post"/enctype="multipart/form-data"
@@ -17,41 +17,9 @@
 		  - https://zzinise.tistory.com/12
 		  메일이 발송되는 기능
 	   -->
-    <div id="wrap">
-      <div>
-        <div id="headerWrap">
-          <header>
-            <h1 id="title">Time Reminder</h1>
-          </header>
-          <!-- nav -->
-          <nav>
-            <h2 class="hide">메인네비게이션</h2>
-            <ul id="navbar">
-              <li><a href="#">메인</a></li>
-              <li><a href="#">전송</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-
-      <!-- main -->
-      <main>
-        <h2>소중한 추억을 기록하세요</h2>
-        <span>어쩌구저쩌구 멘트 주접</span>
-
-        <div id="content"></div>
-          <h4>내용</h4>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
-          <input type="file" />
-        </div>
-
-        <div id="emaill">
-          <h4>이메일 입력</h4>
-          <input type="email" />
-          <input type="datetime-local" />
-          <input type="submit" />
-        </div>
-      </main>
+    <div>
+      <img src="../imgs/logo.png" alt="로고 사진" class="logo" />
+      <button class="into-button">추억 기록하러 가기</button>
     </div>
   </body>
 </html>
