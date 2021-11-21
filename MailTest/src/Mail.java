@@ -32,14 +32,15 @@ public class Mail
 		dbConn.connect();
 		Mail mail = new Mail();
 		mail.setupServerProperties();
-		mail.draftEmail(dbConn.usermail, dbConn.title, dbConn.content);
+		String[] date = dbConn.writedate.split("-");
+		mail.draftEmail(dbConn.usermail, dbConn.title, dbConn.content, date);
 		mail.sendEmail();
 	}
 
 	private void sendEmail() throws MessagingException {
-		String fromUser = "nhsally04@gmail.com";  //Enter sender email id
-		String fromUserName = "나현이";
-		String fromUserPassword = "skgus0729";  //Enter sender gmail password , this will be authenticated by gmail smtp server
+		String fromUser = "Mirim.TimeReminder@gmail.com";  //Enter sender email id
+		String fromUserName = "Time Reminder";
+		String fromUserPassword = "alflathvmxmdnpdjcofflswl";  //Enter sender gmail password , this will be authenticated by gmail smtp server
 		String emailHost = "smtp.gmail.com";
 		Transport transport = newSession.getTransport("smtp");
 		transport.connect(emailHost, fromUser, fromUserPassword);
@@ -48,9 +49,9 @@ public class Mail
 		System.out.println("Email successfully sent!!!");
 	}
 
-	private MimeMessage draftEmail(String usermail, String title, String content) throws AddressException, MessagingException, IOException {
+	private MimeMessage draftEmail(String usermail, String title, String content, String[] date) throws AddressException, MessagingException, IOException {
 		String[] emailReceipients = {usermail}; 
-		String emailSubject = title;
+		String emailSubject = "[Time Reminder]" + date[0] + "년 " + date[1] + "월 " + date[2] + "일에 보낸 편지";
 		String emailBody = content;
 		mimeMessage = new MimeMessage(newSession);
 		
@@ -68,6 +69,7 @@ public class Mail
 	    
 		String BODY = String.join(
 		        System.getProperty("line.separator"),
+		        "<p>${title}</p><br>",
 		        "<p>${content}</p>."
 		    );
 		
@@ -93,7 +95,7 @@ class DBConnection {
 	Connection conn;
 	java.sql.Statement state = null;
 	
-	String title, content, usermail;
+	String title, content, usermail, writedate;
 
 	public void connect() {
 		String url = "jdbc:mysql://localhost:3306/TIMEREMINDER?serverTimezone=UTC";
@@ -106,13 +108,14 @@ class DBConnection {
 			conn = DriverManager.getConnection(url, user, password);
 			
 			state = conn.createStatement();
-			String sql = "SELECT * FROM timereminder WHERE data = NOW()";
+			String sql = "SELECT title, content, mail, senddate, DATE_FORMAT(writedate, '%Y-%m-%d') FROM timereminder WHERE DATE_FORMAT(senddate, '%Y-%m-%d:%H%i') = DATE_FORMAT(NOW(), '%Y-%m-%d:%H%i')";
 			ResultSet rs = ((java.sql.Statement) state).executeQuery(sql);
 			while(rs.next()) {
 				title = rs.getString(1);
 				content = rs.getString(2);
 				usermail = rs.getString(3);
 				String date = rs.getString(4);
+				writedate = rs.getString(5);
 			}
 		} catch (ClassNotFoundException e) {
 			// `com.mysql.cj.jdbc.Driver` 라는 클래스가 라이브러리로 추가되지 않았다면 오류발생
