@@ -5,20 +5,25 @@
   font-weight: normal;
   font-style: normal;
 } */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200&family=Song+Myung&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200&family=Song+Myung&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Brush+Script&display=swap");
 /* body {
   height: 100vh;
   background-size: cover;
   background-image: url("../imgs/background-img.jpeg");
   background-repeat: no-repeat;
 } */
+.content {
+  text-align: center;
+}
 
 .logo {
-  z-index:5;
+  z-index: 5;
   width: 240px;
   height: 50px;
   margin: 20px 20px;
+  position: fixed;
 }
 
 .into-button {
@@ -26,12 +31,32 @@
   background-color: white;
   box-shadow: rgb(126, 126, 126);
   border-color: white;
-  width: 280px;
-  height: 60px;
-  margin:auto;
-  display:block;
-  margin-top: 32vh;
-  font-family: 'Noto Serif KR', serif;
-  font-family: 'Song Myung', serif;
-  font-size: 1.5em;
+  width: 200px;
+  height: 40px;
+  margin: auto;
+  display: block;
+  margin-top: 4vh;
+  font-family: "Nanum Brush Script", cursive;
+  font-size: 1.2em;
+}
+
+.title {
+  padding-top: 125px;
+  text-align: center;
+  /* font-family: "Song Myung", serif; */
+  font-family: "Nanum Brush Script", cursive;
+  /* font-family: "Do Hyeon", sans-serif; */
+  font-size: 25pt;
+}
+
+.text {
+  font-size: 18pt;
+  margin-top: 21px;
+  text-align: center;
+  font-family: "Nanum Brush Script", cursive;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
