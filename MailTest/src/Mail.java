@@ -30,6 +30,7 @@ public class Mail
 
 	private void sendEmail() throws MessagingException {
 		String fromUser = "nhsally04@gmail.com";  //Enter sender email id
+		String fromUserName = "나현이";
 		String fromUserPassword = "skgus0729";  //Enter sender gmail password , this will be authenticated by gmail smtp server
 		String emailHost = "smtp.gmail.com";
 		Transport transport = newSession.getTransport("smtp");
@@ -40,9 +41,9 @@ public class Mail
 	}
 
 	private MimeMessage draftEmail() throws AddressException, MessagingException, IOException {
-		String[] emailReceipients = {"nhsally@naver.com","w2038@e-mirim.hs.kr"};  //Enter list of email recepients
+		String[] emailReceipients = {"nhsally@naver.com"}; 
 		String emailSubject = "Test Mail";
-		String emailBody = "Test Body of my email";
+		String emailBody = "잘보내지는지확인해볼게용 히히히";
 		mimeMessage = new MimeMessage(newSession);
 		
 		for (int i =0 ;i<emailReceipients.length;i++)
@@ -57,13 +58,18 @@ public class Mail
 	    // ADD MESSAGE BODY PARTS ----> MULTIPART 
 	    // FINALLY ADD MULTIPART TO MESSAGECONTENT i.e. mimeMessage object 
 	    
-	    
-		 MimeBodyPart bodyPart = new MimeBodyPart();
-		 bodyPart.setContent(emailBody,"html/text");
-		 MimeMultipart multiPart = new MimeMultipart();
-		 multiPart.addBodyPart(bodyPart);
-		 mimeMessage.setContent(multiPart);
-		 return mimeMessage;
+		String BODY = String.join(
+		        System.getProperty("line.separator"),
+		        "<h1>Test Mail</h1>",
+		        "<p>잘보내지는지확인해볼게용 히히히</p>."
+		    );
+		
+        MimeBodyPart bodyPart = new MimeBodyPart();
+		bodyPart.setContent(emailBody, "text/html;charset=utf-8");
+		MimeMultipart multiPart = new MimeMultipart();
+		multiPart.addBodyPart(bodyPart);
+		mimeMessage.setContent(multiPart);
+		return mimeMessage;
 	}
 
 	private void setupServerProperties() {
