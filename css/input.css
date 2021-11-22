@@ -15,7 +15,7 @@
 
 #top > #title {
   font-family: "Nanum Brush Script", cursive;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 #top > #mainTitle {
   font-family: "Nanum Brush Script", cursive;
@@ -64,7 +64,7 @@
 h4 {
   margin-left: 40px;
   margin-top: 30px;
-  font-size: 15pt;
+  font-size: 13pt;
   font-family: "Nanum Brush Script", cursive;
 }
 
@@ -203,5 +203,19 @@ h4 > #date {
   position: relative;
 }
 
-/* 
- */
+#top > a > #finish {
+  display: inline-block;
+  float: right;
+  margin-right: 60px;
+  margin-bottom: 3px;
+  width: 8%;
+  height: 30px;
+  border-radius: 15pt;
+  border: none;
+  background-color: rgb(104, 104, 104);
+  box-shadow: 5px 5px 10px rgb(173, 173, 173);
+}
+
+#top > a > #finish:hover {
+  color: white;
+}
