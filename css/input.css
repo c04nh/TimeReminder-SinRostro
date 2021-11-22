@@ -14,7 +14,7 @@
   background-color: none;
   position: relative;
   width: 90%;
-  height: 580px;
+  height: 565px;
 }
 
 #box {
@@ -29,11 +29,25 @@
   margin-top: 3px;
   width: 90%;
   resize: none;
+  border: 1px solid #cacaca;
+  background-color: #f1f1f1;
+  color: rgb(73, 73, 73);
+  font-size: 12pt;
+}
+
+#text::active {
+  margin-left: 40px;
+  margin-top: 3px;
+  width: 90%;
+  resize: none;
+  border: 1px solid #525252;
+  background-color: #dddddd;
+  color: white;
 }
 
 h4 {
   margin-left: 40px;
-  margin-top: 50px;
+  margin-top: 30px;
   font-size: 15pt;
   font-family: "Nanum Brush Script", cursive;
 }
@@ -91,7 +105,6 @@ h4 {
 }
 
 label {
-  display: inline-block;
   padding: 10px 20px;
   color: #fff;
   vertical-align: middle;
@@ -106,7 +119,6 @@ label {
 }
 
 #submit {
-  display: inline-block;
   padding: 10px 20px;
   color: #fff;
   vertical-align: middle;
@@ -117,8 +129,8 @@ label {
   margin-left: 15px;
   font-size: 18pt;
   padding-left: 8px;
-  padding-top:2px;
-  padding-bottom:1px;
+  padding-top: 2px;
+  padding-bottom: 1px;
   margin-top: 9px;
   font-family: "Nanum Brush Script", cursive;
 }
@@ -131,4 +143,46 @@ label {
   overflow: hidden;
   border: 0;
 }
-'
+
+#result {
+  display: inline-block;
+  margin-top: 8px;
+  margin-left: 40px;
+  width: 45%;
+  height: 30px;
+  text-align: center;
+  font-family: "Nanum Brush Script", cursive;
+  font-size: 12pt;
+  color: #5e5e5e;
+  border: 1px solid #dddddd;
+}
+
+#name {
+  float: right;
+  margin-top: 6px;
+}
+
+#pushName {
+  display: inline-block;
+  padding-right: 30px;
+}
+#pullName {
+  display: inline-block;
+  padding-right: 50px;
+}
+
+input[type="text"] {
+  border: 1px solid #dddddd;
+  height: 30px;
+}
+
+h3 {
+  padding-left: 5px;
+  padding-top: 3px;
+  font-size: 10pt;
+  position: absolute;
+}
+
+h4 > #date {
+  position: relative;
+}

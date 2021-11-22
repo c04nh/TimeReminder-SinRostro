@@ -12,34 +12,7 @@
     <script src="/path/to/cdn/moment-with-locales.min.js"></script>
     <link href="css/datetimepicker.css" rel="stylesheet" />
     <script src="js/datetimepicker.js"></script>
-    <title>Document</title>
-    <script>
-      $("#file").on("change", function () {
-        var fileName = $("#file").val();
-        $(".upload-name").val(fileName);
-      });
-      //
-      $("#picker").dateTimePicker();
-
-      $("#picker").dateTimePicker({
-        dateFormat: "YYYY-MM-DD HH:mm",
-      });
-
-      $("#picker").dateTimePicker({
-        locale: "ko",
-      });
-
-      $("#picker").dateTimePicker({
-        showTime: true,
-      });
-
-      $("#picker").dateTimePicker({
-        selectData: "now",
-        positionShift: {top: 20, left: 0},
-        title: "Select Date and Time",
-        buttonTitle: "Select",
-      });
-    </script>
+    <title>TimeReminder</title>
   </head>
   <body>
     <!-- 
@@ -82,8 +55,22 @@
           </div>
         </form>
         <!-- date -->
-        <div id="picker">
-          <input type="datetime-local" id="result" value="" />
+        <h4 id="date"><날짜를 지정하세요></h4>
+        <!-- <div id="picker"> -->
+        <input type="datetime-local" id="result" value="" />
+        <!-- </div> -->
+
+        <!-- name -->
+        <div id="name">
+          <div id="pushName">
+            <h3><보내는 사람></h3>
+            <input type="text" />
+          </div>
+
+          <div id="pullName">
+            <h3><받는 사람></h3>
+            <input type="text" />
+          </div>
         </div>
       </div>
     </div>
