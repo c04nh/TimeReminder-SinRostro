@@ -1,24 +1,27 @@
 .banner {
-    position: relative; 
-    width: 130vh; 
-    height: 70vh; 
-    top: 50px;  
-    margin:0 auto; 
-    padding:0; 
-    overflow: hidden;
+  position: relative;
+  width: 100vh;
+  height: 50vh;
+  top: 90px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px grey;
+  border-radius: 10px;
+  border-color: black;
 }
 
-
 .banner ul {
-    position: absolute;
-    margin: 0px; 
-    padding:0; 
-    list-style: none; 
+  position: absolute;
+  margin: 0px;
+  padding: 0;
+  list-style: none;
 }
 
 .banner ul li {
-    float: left; 
-    width: 130vh; 
-    height: 70vh; 
-    margin:0; 
-    padding:0;}
+  float: left;
+  width: 130vh;
+  height: 70vh;
+  margin: 0;
+  padding: 0;
+}
