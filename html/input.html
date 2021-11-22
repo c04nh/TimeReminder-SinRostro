@@ -1,13 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/input.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="/path/to/cdn/jquery.min.js"></script>
+    <script src="/path/to/cdn/moment-with-locales.min.js"></script>
+    <link href="css/datetimepicker.css" rel="stylesheet" />
+    <script src="js/datetimepicker.js"></script>
     <title>Document</title>
-</head>
-<body>
+    <script>
+      $("#file").on("change", function () {
+        var fileName = $("#file").val();
+        $(".upload-name").val(fileName);
+      });
+      //
+      $("#picker").dateTimePicker();
+
+      $("#picker").dateTimePicker({
+        dateFormat: "YYYY-MM-DD HH:mm",
+      });
+
+      $("#picker").dateTimePicker({
+        locale: "ko",
+      });
+
+      $("#picker").dateTimePicker({
+        showTime: true,
+      });
+
+      $("#picker").dateTimePicker({
+        selectData: "now",
+        positionShift: {top: 20, left: 0},
+        title: "Select Date and Time",
+        buttonTitle: "Select",
+      });
+    </script>
+  </head>
+  <body>
     <!-- 
+
 		  글을 쓰는 기능: input type="textarea"
 		  첨부파일을 넣는 기능: input type="file" name=""/method="post"/enctype="multipart/form-data"
 		  날짜를 지정하는 기능: input type="date"/input type="datetime-local"/input type="time"
@@ -15,17 +51,41 @@
 		  - https://zzinise.tistory.com/12
 		  메일이 발송되는 기능
     -->
-    <div id="content">
-        <h4>text</h4>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
-        <input type="file" />
-    </div>
+    <a href="../html/index.html"
+      ><img src="../imgs/logo.png" alt="로고 사진" class="logo"
+    /></a>
 
-    <div id="email">
-        <h4>이메일 입력</h4>
-        <input type="email" />
-        <input type="datetime-local" />
-        <input type="submit" />
+    <div id="box">
+      <div id="content">
+        <h4><내용을 입력하세요></h4>
+        <textarea name="" id="text" cols="30" rows="10"></textarea>
+
+        <!-- file -->
+        <h4><사진을 추가하세요></h4>
+        <div class="filebox">
+          <input class="upload-name" placeholder="최대 1장까지 업로드" />
+          <label for="file">Upload</label>
+          <input type="file" id="file" />
+        </div>
+
+        <!-- email -->
+        <form action="#" method="get" name="userEmail">
+          <h4><이메일을 입력하세요></h4>
+          <div class="mailbox">
+            <input
+              type="email"
+              id="inputMail"
+              name="userEmail"
+              placeholder="@를 포함하여 작성"
+            />
+            <input type="submit" id="submit" value="Upload" />
+          </div>
+        </form>
+        <!-- date -->
+        <div id="picker">
+          <input type="datetime-local" id="result" value="" />
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
