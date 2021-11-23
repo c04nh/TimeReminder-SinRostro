@@ -52,6 +52,7 @@ public class Mail
 	private MimeMessage draftEmail(String usermail, String title, String content, String[] date) throws AddressException, MessagingException, IOException {
 		String[] emailReceipients = {usermail}; 
 		String emailSubject = "[Time Reminder]" + date[0] + "년 " + date[1] + "월 " + date[2] + "일에 보낸 편지";
+		String emailtitle = title;
 		String emailBody = content;
 		mimeMessage = new MimeMessage(newSession);
 		
@@ -69,12 +70,11 @@ public class Mail
 	    
 		String BODY = String.join(
 		        System.getProperty("line.separator"),
-		        "<p>${title}</p><br>",
-		        "<p>${content}</p>."
+		        "<h2>"+emailtitle+"</h2><br><p>"+emailBody+"</p>"
 		    );
 		
         MimeBodyPart bodyPart = new MimeBodyPart();
-		bodyPart.setContent(emailBody, "text/html;charset=utf-8");
+		bodyPart.setContent(BODY, "text/html;charset=utf-8");
 		MimeMultipart multiPart = new MimeMultipart();
 		multiPart.addBodyPart(bodyPart);
 		mimeMessage.setContent(multiPart);
@@ -95,7 +95,7 @@ class DBConnection {
 	Connection conn;
 	java.sql.Statement state = null;
 	
-	String title, content, usermail, writedate;
+	String title, content, usermail, date, writedate;
 
 	public void connect() {
 		String url = "jdbc:mysql://localhost:3306/TIMEREMINDER?serverTimezone=UTC";
@@ -114,9 +114,10 @@ class DBConnection {
 				title = rs.getString(1);
 				content = rs.getString(2);
 				usermail = rs.getString(3);
-				String date = rs.getString(4);
+				date = rs.getString(4);
 				writedate = rs.getString(5);
 			}
+			
 		} catch (ClassNotFoundException e) {
 			// `com.mysql.cj.jdbc.Driver` 라는 클래스가 라이브러리로 추가되지 않았다면 오류발생
 			System.out.println("[로드 오류]\n" + e.getStackTrace());
