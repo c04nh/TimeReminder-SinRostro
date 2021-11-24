@@ -60,16 +60,26 @@ body {
   animation-iteration-count: infinite;
 }
 
+#textBox {
+  margin-top: 18px;
+}
+
 .text {
   font-size: 16pt;
-  margin-top: 21px;
+  /* margin-top: 18px; */
   text-align: center;
   font-family: "Nanum Brush Script", cursive;
   color: rgba(85, 85, 85, 0.521);
 }
 
+.text:hover {
+  color: rgb(117, 117, 117);
+}
+
 .text:hover > span {
-  color: red;
+  translate: 0.3s;
+  color: rgb(252, 39, 39);
+  transition: all 0.5s ease-in-out;
 }
 
 a {
