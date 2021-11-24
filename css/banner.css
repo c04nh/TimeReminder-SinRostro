@@ -2,13 +2,14 @@
   position: relative;
   width: 100vh;
   height: 50vh;
-  top: 90px;
+  top: 110px;
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
   box-shadow: 5px 5px 10px grey;
   border-radius: 10px;
   border-color: black;
+  margin-bottom: 25px;
 }
 
 .banner ul {

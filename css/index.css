@@ -17,6 +17,10 @@
 .content {
   text-align: center;
 }
+body{
+  margin-top: 3px;
+  margin-bottom: 40px;
+}
 
 .logo {
   z-index: 5;
