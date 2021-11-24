@@ -23,7 +23,8 @@
           <li><img src="../imgs/banner_family.jpg" /></li>
         </ul>
       </div>
-      <p class="title">당신의 추억을 선물하세요</p>
+      <p class=typing-txt>당신의 추억을 선물하세요</p>
+      <p class="typing"></p>
       <p class="text">바쁜 <span>시간</span>속에 잊혀져</br>
       챙기지 못했던 <span>인연</span>들에게</br>
       그때의 <span>추억</span>들을 선물해주세요</br>
@@ -66,6 +67,33 @@
           });
         }
       });
+
+    //text
+      var typingBool = false; 
+      var typingIdx=0; 
+
+      // 타이핑될 텍스트를 가져온다 
+      var typingTxt = $(".typing-txt").text(); 
+
+      typingTxt=typingTxt.split(""); // 한글자씩 자른다. 
+
+      if(typingBool==false){ 
+        // 타이핑이 진행되지 않았다면 
+        typingBool=true;     
+        var tyInt = setInterval(typing,100); // 반복동작 
+      } 
+          
+      function typing(){ 
+        if(typingIdx<typingTxt.length){ 
+          // 타이핑될 텍스트 길이만큼 반복 
+          $(".typing").append(typingTxt[typingIdx]);
+          // 한글자씩 이어준다. 
+          typingIdx++; 
+        } else{ 
+          //끝나면 반복종료 
+          clearInterval(tyInt); 
+        } 
+      }   
     </script>
 
   </body>
