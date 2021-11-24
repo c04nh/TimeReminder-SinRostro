@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Brush+Script&display=swap");
-
+body{
+  margin-top: 3px;
+}
+input{
+  font-size: 14pt;
+}
 .logo {
   z-index: 5;
   width: 240px;
@@ -10,12 +15,14 @@
 
 #top {
   margin-bottom: 8px;
-  margin-left: 60px;
+  margin-top: 30px;
+  margin-left: 40px;
 }
 
 #top > #title {
   font-family: "Nanum Brush Script", cursive;
   margin-bottom: 6px;
+  font-size: 17pt;
 }
 #top > #mainTitle {
   font-family: "Nanum Brush Script", cursive;
@@ -28,7 +35,7 @@
   background-color: none;
   position: relative;
   width: 90%;
-  height: 565px;
+  height: 630px;
   /* margin-top: 40px; */
 }
 
@@ -36,25 +43,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top:10px;
   font-family: "Nanum Brush Script", cursive;
 }
 
 #text {
   margin-left: 40px;
-  margin-top: 3px;
-  width: 90%;
+  margin-top: 8px;
+  width: 95%;
   resize: none;
   border: 1px solid #cacaca;
   background-color: #f1f1f1;
   color: rgb(73, 73, 73);
-  font-size: 12pt;
+  font-size: 15pt;
   font-family: "Nanum Brush Script", cursive;
 }
 
-#text::active {
+#text:active {
   margin-left: 40px;
   margin-top: 3px;
-  width: 90%;
+  width: 95%;
   resize: none;
   border: 1px solid #525252;
   background-color: #dddddd;
@@ -64,7 +72,7 @@
 h4 {
   margin-left: 40px;
   margin-top: 30px;
-  font-size: 13pt;
+  font-size: 17pt;
   font-family: "Nanum Brush Script", cursive;
 }
 
@@ -110,11 +118,11 @@ h4 {
 #inputMail {
   display: inline-block;
   height: 40px;
-  padding: 0 10px;
+  /* padding: 0 10px; */
   vertical-align: middle;
   border: 1px solid #dddddd;
   margin-left: 40px;
-  width: 81%;
+  width: 40%;
   color: #999999;
   margin-top: 8px;
   font-family: "Nanum Brush Script", cursive;
@@ -203,16 +211,16 @@ h4 > #date {
   position: relative;
 }
 
-#top > a > #finish {
+#finish {
   display: inline-block;
   float: right;
-  margin-right: 60px;
-  margin-bottom: 3px;
+  margin-right: 2.2%;
+  margin-top: 8px;
   width: 8%;
-  height: 30px;
-  border-radius: 15pt;
+  height: 35px;
+  border-radius: 10pt;
   border: none;
-  background-color: rgb(104, 104, 104);
+  background-color: rgb(145, 144, 144);
   box-shadow: 5px 5px 10px rgb(173, 173, 173);
 }
 

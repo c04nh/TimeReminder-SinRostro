@@ -28,37 +28,36 @@
       ><img src="../imgs/logo.png" alt="로고 사진" class="logo"
     /></a>
 
-    <div id="top">
-      <p id="title"><제목을 입력하세요></p>
-      <input
-        type="text"
-        id="mainTitle"
-        placeholder="30글자 이내로 입력하세요."
-      />
-
-      <a href="../html/index.html"
-        ><input type="submit" value="send" id="finish"
-      /></a>
-    </div>
+    
 
     <div id="box">
       <div id="content">
+        <div id="top">
+          <p id="title"><제목을 입력하세요></p>
+          <input
+            type="text"
+            id="mainTitle"
+            placeholder="30글자 이내로 입력하세요."
+          />
+    
+          
+        </div>
         <h4><내용을 입력하세요></h4>
         <textarea
           name=""
           id="text"
           cols="30"
           rows="10"
-          placeholder="최대 65,535까지 입력하세요."
+          placeholder="최대 65,535자까지 입력하세요."
         ></textarea>
 
         <!-- file -->
-        <h4><사진을 추가하세요></h4>
+        <!-- <h4><사진을 추가하세요></h4>
         <div class="filebox">
           <input class="upload-name" placeholder="최대 1장까지 업로드" />
           <label for="file">Upload</label>
           <input type="file" id="file" />
-        </div>
+        </div> -->
 
         <!-- email -->
         <form action="#" method="get" name="userEmail">
@@ -68,19 +67,22 @@
               type="email"
               id="inputMail"
               name="userEmail"
-              placeholder="@를 포함하여 작성"
+              placeholder="@를 포함하여 작성하세요."
             />
-            <input type="submit" id="submit" value="Upload" />
+            <!-- <input type="submit" id="submit" value="Upload" /> -->
           </div>
         </form>
         <!-- date -->
         <h4 id="date"><날짜를 지정하세요></h4>
         <!-- <div id="picker"> -->
         <input type="datetime-local" id="result" value="" />
+        <a href="../html/index.html" onclick="alert('보내기 예약 되었습니다.');"
+            ><input type="submit" value="send" id="finish"
+          /></a>
         <!-- </div> -->
 
         <!-- name -->
-        <div id="name">
+        <!-- <div id="name">
           <div id="pushName">
             <h3><보내는 사람></h3>
             <input type="text" />
@@ -90,7 +92,7 @@
             <h3><받는 사람></h3>
             <input type="text" />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>
