@@ -31,9 +31,7 @@ body {
 }
 
 .into-button {
-  border-radius: 8px;
   background-color: white;
-  box-shadow: rgb(126, 126, 126);
   border-color: white;
   width: 200px;
   height: 40px;
@@ -42,6 +40,15 @@ body {
   margin-top: 4vh;
   font-family: "Nanum Brush Script", cursive;
   font-size: 1.2em;
+  transition: all 0.5s;
+  cursor: pointer;
+  letter-spacing: 0px;
+}
+
+.into-button:hover {
+  background-color: rgb(214, 214, 214);
+  color: white;
+  transition: all 0.5s;
 }
 
 .typing-txt {
@@ -79,10 +86,9 @@ body {
 .text:hover > span {
   translate: 0.3s;
   color: rgb(252, 39, 39);
-  transition: all 0.5s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 a {
   text-decoration: none;
-  color: black;
 }
