@@ -5,53 +5,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Time Reminder</title>
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/banner.css" />
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
-    <!-- 
-		  글을 쓰는 기능: input type="textarea"
-		  첨부파일을 넣는 기능: input type="file" name=""/method="post"/enctype="multipart/form-data"
-		  날짜를 지정하는 기능: input type="date"/input type="datetime-local"/input type="time"
-		  이메일을 발송하는 기능 input type="button"
-		  - https://zzinise.tistory.com/12
-		  메일이 발송되는 기능
-	   -->
-    <div id="wrap">
-      <div>
-        <div id="headerWrap">
-          <header>
-            <h1 id="title">Time Reminder</h1>
-          </header>
-          <!-- nav -->
-          <nav>
-            <h2 class="hide">메인네비게이션</h2>
-            <ul id="navbar">
-              <li><a href="#">메인</a></li>
-              <li><a href="#">전송</a></li>
-            </ul>
-          </nav>
-        </div>
+    <div class="contents">
+      <a href="./index.html"><img src="../imgs/logo.png" alt="로고 사진" class="logo" /></a>
+      <div class="banner">
+        <ul>
+          <li><img src="../imgs/banner_friend.jpg" /></li>
+          <li><img src="../imgs/banner_graduate.jpg" /></li>
+          <li><img src="../imgs/banner_wedding.jpg" /></li>
+          <li><img src="../imgs/banner_christmas.jpg" /></li>
+          <li><img src="../imgs/banner_family.jpg" /></li>
+        </ul>
       </div>
-
-      <!-- main -->
-      <main>
-        <h2>소중한 추억을 기록하세요</h2>
-        <span>어쩌구저쩌구 멘트 주접</span>
-
-        <div id="content"></div>
-          <h4>내용</h4>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
-          <input type="file" />
-        </div>
-
-        <div id="emaill">
-          <h4>이메일 입력</h4>
-          <input type="email" />
-          <input type="datetime-local" />
-          <input type="submit" /> 
-        </div>
-      </main>
+      <p class=typing-txt>당신의 추억을 선물하세요.</p>
+      <p class="typing"></p>
+      <div id="textBox">
+      <p class="text">바쁜 <span>시간</span>속에 잊혀져</p>
+      <p class="text">챙기지 못했던 <span>인연</span>들에게</p>
+      <p class="text">그때의 <span>추억</span>들을 선물해주세요</p>
     </div>
+
+      </p>
+      <button class="into-button">
+        <a href="input.html">For You</a>
+      </button>
+    </div>
+
+    <script language="JavaScript">
+      $(document).ready(function () {
+        var $banner = $(".banner").find("ul");
+
+        var $bannerWidth = $banner.children().outerWidth(); //이미지의 폭
+        var $bannerHeight = $banner.children().outerHeight(); // 높이
+        var $length = $banner.children().length; //이미지의 갯수
+        var rollingId;
+
+        //정해진 초마다 함수 실행
+        rollingId = setInterval(function () {
+          rollingStart();
+        }, 3000); //다음 이미지로 롤링 애니메이션 할 시간차
+      
+
+        function rollingStart() {
+          $banner.css("width", $bannerWidth * $length + "px");
+          $banner.css("height", $bannerHeight + "px");
+          //alert(bannerHeight);
+          //배너의 좌측 위치를 옮겨 준다.
+          $banner.animate({left: -$bannerWidth + "px"}, 1500, function () {
+            //숫자는 롤링 진행되는 시간이다.
+            //첫번째 이미지를 마지막 끝에 복사(이동이 아니라 복사)해서 추가한다.
+            $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+            //뒤로 복사된 첫번재 이미지는 필요 없으니 삭제한다.
+            $(this).find("li:first").remove();
+            //다음 움직임을 위해서 배너 좌측의 위치값을 초기화 한다.
+            $(this).css("left", 0);
+            //이 과정을 반복하면서 계속 롤링하는 배너를 만들 수 있다.
+          });
+        }
+      });
+
+    //text
+      var typingBool = false; 
+      var typingIdx=0; 
+
+      // 타이핑될 텍스트를 가져온다 
+      var typingTxt = $(".typing-txt").text(); 
+
+      typingTxt=typingTxt.split(""); // 한글자씩 자른다. 
+
+      if(typingBool==false){ 
+        // 타이핑이 진행되지 않았다면 
+        typingBool=true;     
+        var tyInt = setInterval(typing,100); // 반복동작 
+      } 
+          
+      function typing(){ 
+        if(typingIdx<typingTxt.length){ 
+          // 타이핑될 텍스트 길이만큼 반복 
+          $(".typing").append(typingTxt[typingIdx]);
+          // 한글자씩 이어준다. 
+          typingIdx++; 
+        } else{ 
+          //끝나면 반복종료 
+          clearInterval(tyInt); 
+        } 
+      }   
+    </script>
+
   </body>
 </html>
