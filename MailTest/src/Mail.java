@@ -50,8 +50,7 @@ public class Mail
 
 	MimeMessage draftEmail(String usermail, String title, String content) throws AddressException, MessagingException, IOException {
 		String[] emailReceipients = {usermail}; 
-		String emailSubject = "[Time Reminder]";
-		String emailtitle = title;
+		String emailSubject = title;
 		String emailBody = content;
 		mimeMessage = new MimeMessage(newSession);
 		
@@ -64,7 +63,7 @@ public class Mail
 	    
 		String BODY = String.join(
 		        System.getProperty("line.separator"),
-		        "<h2>"+emailtitle+"</h2><br><p>"+emailBody+"</p>"
+		        "<p>"+emailBody+"</p>"
 		    );
 		
         MimeBodyPart bodyPart = new MimeBodyPart();
