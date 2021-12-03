@@ -30,7 +30,7 @@ public class GUI
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
         JPanel c=new JPanel();  // 이렇게 컬러값을 생성 후
-        c.setBackground(b);
+        c.setBackground(b);  
         f.add(c);  
 	}
 }
