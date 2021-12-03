@@ -26,21 +26,17 @@ public class Mail
 	MimeMessage mimeMessage = null;
 	public static void main(String args[]) throws AddressException, MessagingException, IOException
 	{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		DBConnection dbConn = new DBConnection();
-//		dbConn.connect();
-		Mail mail = new Mail();
-		mail.setupServerProperties();
-//		String[] date = dbConn.writedate.split("-");
-//		mail.draftEmail(usermail, title, content, date);
-		String usermail = br.readLine();
-		String title = br.readLine();
-		String content = br.readLine();
-		mail.draftEmail(usermail, title, content);
-		mail.sendEmail();
+//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		Mail mail = new Mail();
+//		mail.setupServerProperties();
+//		String usermail = "nhsally@naver.com";
+//		String title = "타이틀";
+//		String content = "콘텐츠";
+//		mail.draftEmail(usermail, title, content);
+//		mail.sendEmail();
 	}
 
-	private void sendEmail() throws MessagingException {
+	void sendEmail() throws MessagingException {
 		String fromUser = "Mirim.TimeReminder@gmail.com";  //Enter sender email id
 		String fromUserName = "Time Reminder";
 		String fromUserPassword = "alflathvmxmdnpdjcofflswl";  //Enter sender gmail password , this will be authenticated by gmail smtp server
@@ -52,7 +48,7 @@ public class Mail
 		System.out.println("Email successfully sent!!!");
 	}
 
-	private MimeMessage draftEmail(String usermail, String title, String content) throws AddressException, MessagingException, IOException {
+	MimeMessage draftEmail(String usermail, String title, String content) throws AddressException, MessagingException, IOException {
 		String[] emailReceipients = {usermail}; 
 		String emailSubject = "[Time Reminder]";
 		String emailtitle = title;
@@ -79,7 +75,7 @@ public class Mail
 		return mimeMessage;
 	}
 
-	private void setupServerProperties() {
+	void setupServerProperties() {
 		Properties properties = System.getProperties();
 		properties.put("mail.smtp.port", "587");
 		properties.put("mail.smtp.auth", "true");
@@ -88,39 +84,3 @@ public class Mail
 	}
 	
 }	
-
-//class DBConnection {
-//	Connection conn;
-//	java.sql.Statement state = null;
-//	
-//	String title, content, usermail, date, writedate;
-//
-//	public void connect() {
-//		String url = "jdbc:mysql://localhost:3306/TIMEREMINDER?serverTimezone=UTC";
-//		String user = "root";
-//		String password = "111111";
-//		String driverName = "com.mysql.cj.jdbc.Driver";
-//		
-//		try {
-//			Class.forName(driverName);
-//			conn = DriverManager.getConnection(url, user, password);
-//			
-//			state = conn.createStatement();
-//			String sql = "SELECT title, content, mail, senddate, DATE_FORMAT(writedate, '%Y-%m-%d') FROM timereminder WHERE DATE_FORMAT(senddate, '%Y-%m-%d:%H%i') = DATE_FORMAT(NOW(), '%Y-%m-%d:%H%i')";
-//			ResultSet rs = ((java.sql.Statement) state).executeQuery(sql);
-//			while(rs.next()) {
-//				title = rs.getString(1);
-//				content = rs.getString(2);
-//				usermail = rs.getString(3);
-//				date = rs.getString(4);
-//				writedate = rs.getString(5);
-//			}
-//			
-//		} catch (ClassNotFoundException e) {
-//			System.out.println("[로드 오류]\n" + e.getStackTrace());
-//		} catch (SQLException e) {
-//			System.out.println("[연결 오류]\n" + e.getStackTrace());
-//		}
-//	}
-//	
-//}
