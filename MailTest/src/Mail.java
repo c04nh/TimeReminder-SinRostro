@@ -1,5 +1,7 @@
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
+import java.util.Scanner;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -19,21 +21,22 @@ import java.sql.SQLException;
 
 public class Mail
 {
-
-	//SETUP MAIL SERVER PROPERTIES
-	//DRAFT AN EMAIL
-	//SEND EMAIL
 		
 	Session newSession = null;
 	MimeMessage mimeMessage = null;
 	public static void main(String args[]) throws AddressException, MessagingException, IOException
 	{
-		DBConnection dbConn = new DBConnection();
-		dbConn.connect();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		DBConnection dbConn = new DBConnection();
+//		dbConn.connect();
 		Mail mail = new Mail();
 		mail.setupServerProperties();
-		String[] date = dbConn.writedate.split("-");
-		mail.draftEmail(dbConn.usermail, dbConn.title, dbConn.content, date);
+//		String[] date = dbConn.writedate.split("-");
+//		mail.draftEmail(usermail, title, content, date);
+		String usermail = br.readLine();
+		String title = br.readLine();
+		String content = br.readLine();
+		mail.draftEmail(usermail, title, content);
 		mail.sendEmail();
 	}
 
@@ -49,9 +52,9 @@ public class Mail
 		System.out.println("Email successfully sent!!!");
 	}
 
-	private MimeMessage draftEmail(String usermail, String title, String content, String[] date) throws AddressException, MessagingException, IOException {
+	private MimeMessage draftEmail(String usermail, String title, String content) throws AddressException, MessagingException, IOException {
 		String[] emailReceipients = {usermail}; 
-		String emailSubject = "[Time Reminder]" + date[0] + "년 " + date[1] + "월 " + date[2] + "일에 보낸 편지";
+		String emailSubject = "[Time Reminder]";
 		String emailtitle = title;
 		String emailBody = content;
 		mimeMessage = new MimeMessage(newSession);
@@ -61,12 +64,7 @@ public class Mail
 			mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceipients[i]));
 		}
 		mimeMessage.setSubject(emailSubject);
-	   
-      // CREATE MIMEMESSAGE 
-	    // CREATE MESSAGE BODY PARTS 
-	    // CREATE MESSAGE MULTIPART 
-	    // ADD MESSAGE BODY PARTS ----> MULTIPART 
-	    // FINALLY ADD MULTIPART TO MESSAGECONTENT i.e. mimeMessage object 
+
 	    
 		String BODY = String.join(
 		        System.getProperty("line.separator"),
@@ -91,40 +89,38 @@ public class Mail
 	
 }	
 
-class DBConnection {
-	Connection conn;
-	java.sql.Statement state = null;
-	
-	String title, content, usermail, date, writedate;
-
-	public void connect() {
-		String url = "jdbc:mysql://localhost:3306/TIMEREMINDER?serverTimezone=UTC";
-		String user = "root";
-		String password = "111111";
-		String driverName = "com.mysql.cj.jdbc.Driver";
-		
-		try {
-			Class.forName(driverName);
-			conn = DriverManager.getConnection(url, user, password);
-			
-			state = conn.createStatement();
-			String sql = "SELECT title, content, mail, senddate, DATE_FORMAT(writedate, '%Y-%m-%d') FROM timereminder WHERE DATE_FORMAT(senddate, '%Y-%m-%d:%H%i') = DATE_FORMAT(NOW(), '%Y-%m-%d:%H%i')";
-			ResultSet rs = ((java.sql.Statement) state).executeQuery(sql);
-			while(rs.next()) {
-				title = rs.getString(1);
-				content = rs.getString(2);
-				usermail = rs.getString(3);
-				date = rs.getString(4);
-				writedate = rs.getString(5);
-			}
-			
-		} catch (ClassNotFoundException e) {
-			// `com.mysql.cj.jdbc.Driver` 라는 클래스가 라이브러리로 추가되지 않았다면 오류발생
-			System.out.println("[로드 오류]\n" + e.getStackTrace());
-		} catch (SQLException e) {
-			// DB접속정보가 틀렸다면 오류발생
-			System.out.println("[연결 오류]\n" + e.getStackTrace());
-		}
-	}
-	
-}
+//class DBConnection {
+//	Connection conn;
+//	java.sql.Statement state = null;
+//	
+//	String title, content, usermail, date, writedate;
+//
+//	public void connect() {
+//		String url = "jdbc:mysql://localhost:3306/TIMEREMINDER?serverTimezone=UTC";
+//		String user = "root";
+//		String password = "111111";
+//		String driverName = "com.mysql.cj.jdbc.Driver";
+//		
+//		try {
+//			Class.forName(driverName);
+//			conn = DriverManager.getConnection(url, user, password);
+//			
+//			state = conn.createStatement();
+//			String sql = "SELECT title, content, mail, senddate, DATE_FORMAT(writedate, '%Y-%m-%d') FROM timereminder WHERE DATE_FORMAT(senddate, '%Y-%m-%d:%H%i') = DATE_FORMAT(NOW(), '%Y-%m-%d:%H%i')";
+//			ResultSet rs = ((java.sql.Statement) state).executeQuery(sql);
+//			while(rs.next()) {
+//				title = rs.getString(1);
+//				content = rs.getString(2);
+//				usermail = rs.getString(3);
+//				date = rs.getString(4);
+//				writedate = rs.getString(5);
+//			}
+//			
+//		} catch (ClassNotFoundException e) {
+//			System.out.println("[로드 오류]\n" + e.getStackTrace());
+//		} catch (SQLException e) {
+//			System.out.println("[연결 오류]\n" + e.getStackTrace());
+//		}
+//	}
+//	
+//}
