@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JPanel;   
  
 public class GUI
 {
