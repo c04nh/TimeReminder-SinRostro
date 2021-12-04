@@ -9,6 +9,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 class RoundedButton extends JButton {
     public RoundedButton() { super(); decorate(); } 
@@ -22,7 +24,7 @@ class RoundedButton extends JButton {
        Color c = new Color(206, 206, 206);
        int width = getWidth(); 
        int height = getHeight(); 
-       Font smallfont = new Font("Mermaid", Font.BOLD, 16);
+       Font smallfont = new Font("Serif", Font.BOLD, 20);
        Graphics2D graphics = (Graphics2D) g; 
        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
        if (getModel().isArmed()) { graphics.setColor(c.brighter()); } 
@@ -35,21 +37,23 @@ class RoundedButton extends JButton {
 //       int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
        graphics.setColor(Color.white); 
        graphics.setFont(smallfont); 
-       graphics.drawString(getText(), 33, 23); 
+       graphics.drawString(getText(), 31, 24); 
        graphics.dispose(); 
        super.paintComponent(g); 
-       }
     }
+}
  
 public class GUI
 {
-    // ���� 
+	String m;
     public static void main(String args[]) throws IOException, AddressException, MessagingException
     {
     	Color b =new Color(83, 96, 120);
+    	Color c = new Color(206, 206, 206);
         JFrame f = new JFrame();
-        Font font = new Font("Mermaid", Font.BOLD, 23);
-        Font smallfont = new Font("Mermaid", Font.PLAIN, 15);
+        String [] address = {"메일 선택", "daum.net", "gmail.com", "hanmail.net", "kakao.com", "nate.com", "naver.com", "outlook.com"}; 
+        Font font = new Font("Serif", Font.BOLD, 23);
+        Font smallfont = new Font("Serif", Font.PLAIN, 17);
         JTextField t1 = new JTextField(""){
             @Override
             public void setBorder(Border border) {
@@ -57,15 +61,44 @@ public class GUI
             }
         };
         JLabel email = new JLabel("Email");
-        email.setBounds(30, 18, 100, 50); 
+        email.setBounds(28, 18, 100, 50); 
         email.setFont(font);
         email.setForeground(Color.white);
         f.add(email);
-        t1.setBounds(25, 60, 350, 35); 
+        t1.setBounds(25, 60, 150, 35); 
         t1.setFont(smallfont);
         f.add(t1);
+        JLabel atsign = new JLabel("@");
+        atsign.setBounds(180, 55, 40, 40); 
+        atsign.setFont(font);
+        atsign.setForeground(Color.white);
+        f.add(atsign);
+        JComboBox combo = new JComboBox(address); 
+        combo.setBounds(205, 60, 170, 35); 
+        combo.setFont(smallfont);
+        combo.setBackground(Color.white);
+        combo.setForeground(Color.black);
+        for (int i = 0; i < combo.getComponentCount(); i++) 
+        {
+            if (combo.getComponent(i) instanceof JComponent) {
+                ((JComponent) combo.getComponent(i)).setBorder(new EmptyBorder(0, 0, 0, 10));
+            }
+
+
+            if (combo.getComponent(i) instanceof AbstractButton) {
+                ((AbstractButton) combo.getComponent(i)).setBorderPainted(false);
+            }
+        }
+        f.add(combo);
+        GUI g1 = new GUI();
+        combo.addActionListener(new ActionListener() { 
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        	    g1.m = combo.getSelectedItem().toString();
+        	}
+        });
         JLabel title = new JLabel("Title");
-        title.setBounds(30, 98, 100, 50); 
+        title.setBounds(28, 98, 100, 50); 
         title.setFont(font);
         title.setForeground(Color.white);
         f.add(title);
@@ -79,7 +112,7 @@ public class GUI
         t2.setFont(smallfont);
         f.add(t2);
         JLabel content = new JLabel("Content");
-        content.setBounds(30, 178, 100, 50); 
+        content.setBounds(28, 178, 100, 50); 
         content.setFont(font);
         content.setForeground(Color.white);
         f.add(content);
@@ -104,22 +137,22 @@ public class GUI
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 		        Mail mail = new Mail();
-				mail.setupServerProperties();
-				String usermail = t1.getText();
-		        String title = t2.getText();
+				mail.setupServerProperties();	
+				String usermail = t1.getText() +"@"+ g1.m;
+		        String title = t2.getText() ;
 		        String content = t3.getText();
-				try {
+		        try {
 					mail.draftEmail(usermail, title, content);
-				} catch (MessagingException | IOException e1) {
+				} catch (MessagingException | IOException e2) {
 					// TODO Auto-generated catch block
-					
+					e2.printStackTrace();
 				}
 				try {
 					mail.sendEmail();
 				} catch (MessagingException e1) {
 					// TODO Auto-generated catch block
 					JLabel label = new JLabel("Wrong Email Address!");
-					label.setFont(new Font("Mermaid", Font.PLAIN, 18));
+					label.setFont(new Font("Serif", Font.PLAIN, 18));
 					JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
 				}
 		        t1.setText("");

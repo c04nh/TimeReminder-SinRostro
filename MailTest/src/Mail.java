@@ -22,20 +22,12 @@ public class Mail
 	MimeMessage mimeMessage = null;
 	public static void main(String args[]) throws AddressException, MessagingException, IOException
 	{
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		Mail mail = new Mail();
-//		mail.setupServerProperties();
-//		String usermail = "nhsally@naver.com";
-//		String title = "타이틀";
-//		String content = "콘텐츠";
-//		mail.draftEmail(usermail, title, content);
-//		mail.sendEmail();
 	}
 
 	void sendEmail() throws MessagingException {
 		String fromUser = "Mirim.TimeReminder@gmail.com";  //Enter sender email id
 		String fromUserName = "Time Reminder";
-		String fromUserPassword = "alflathvmxmdnpdjcofflswl";  //Enter sender gmail password , this will be authenticated by gmail smtp server
+		String fromUserPassword = "alflarhkgkrrh1!";  //Enter sender gmail password , this will be authenticated by gmail smtp server
 		String emailHost = "smtp.gmail.com";
 		Transport transport = newSession.getTransport("smtp");
 		transport.connect(emailHost, fromUser, fromUserPassword);
@@ -43,11 +35,11 @@ public class Mail
 			transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
 			transport.close();
 			JLabel label = new JLabel("Email successfully sent!");
-			label.setFont(new Font("Mermaid", Font.PLAIN, 18));
+			label.setFont(new Font("Serif", Font.PLAIN, 18));
 			JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
 		}catch (NullPointerException e) {
 			JLabel label = new JLabel("EMPTY!");
-			label.setFont(new Font("Mermaid", Font.PLAIN, 18));
+			label.setFont(new Font("Serif", Font.PLAIN, 18));
 			JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
 		}
 		
