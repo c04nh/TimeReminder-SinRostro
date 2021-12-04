@@ -19,23 +19,23 @@ class RoundedButton extends JButton {
     protected void decorate() { setBorderPainted(false); setOpaque(false); }
     @Override 
     protected void paintComponent(Graphics g) {
-       Color c = new Color(255,247,242);
-       Color o = new Color(247,99,12);
+       Color c = new Color(206, 206, 206);
        int width = getWidth(); 
        int height = getHeight(); 
+       Font smallfont = new Font("Mermaid", Font.BOLD, 16);
        Graphics2D graphics = (Graphics2D) g; 
        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
-       if (getModel().isArmed()) { graphics.setColor(c.darker()); } 
-       else if (getModel().isRollover()) { graphics.setColor(c.brighter()); } 
+       if (getModel().isArmed()) { graphics.setColor(c.brighter()); } 
+       else if (getModel().isRollover()) { graphics.setColor(c.darker()); } 
        else { graphics.setColor(c); } 
        graphics.fillRoundRect(0, 0, width, height, 0, 0); 
        FontMetrics fontMetrics = graphics.getFontMetrics(); 
        Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
-       int textX = (width - stringBounds.width) / 2; 
-       int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
+//       int textX = (width - stringBounds.width) / 2; 
+//       int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
        graphics.setColor(Color.white); 
-       graphics.setFont(getFont()); 
-       graphics.drawString(getText(), textX, textY); 
+       graphics.setFont(smallfont); 
+       graphics.drawString(getText(), 33, 23); 
        graphics.dispose(); 
        super.paintComponent(g); 
        }
@@ -96,7 +96,7 @@ public class GUI
         };
         scrollPane.setBounds(25, 220, 350, 270); 
         f.add(scrollPane);
-        RoundedButton btn = new RoundedButton("send");
+        RoundedButton btn = new RoundedButton("SEND");
         btn.setBounds(265, 505, 110, 35); 
         btn.addActionListener(new ActionListener() {
 
