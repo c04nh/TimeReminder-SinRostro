@@ -33,7 +33,7 @@ class RoundedButton extends JButton {
        Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
        int textX = (width - stringBounds.width) / 2; 
        int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
-       graphics.setColor(o); 
+       graphics.setColor(Color.white); 
        graphics.setFont(getFont()); 
        graphics.drawString(getText(), textX, textY); 
        graphics.dispose(); 
@@ -46,8 +46,8 @@ public class GUI
     // ���� 
     public static void main(String args[]) throws IOException, AddressException, MessagingException
     {
-    	Color b=new Color(83, 96, 120);
-        JFrame f= new JFrame();
+    	Color b =new Color(83, 96, 120);
+        JFrame f = new JFrame();
         Font font = new Font("Mermaid", Font.BOLD, 23);
         Font smallfont = new Font("Mermaid", Font.PLAIN, 15);
         JTextField t1 = new JTextField(""){
@@ -59,6 +59,7 @@ public class GUI
         JLabel email = new JLabel("Email");
         email.setBounds(30, 18, 100, 50); 
         email.setFont(font);
+        email.setForeground(Color.white);
         f.add(email);
         t1.setBounds(25, 60, 350, 35); 
         t1.setFont(smallfont);
@@ -66,6 +67,7 @@ public class GUI
         JLabel title = new JLabel("Title");
         title.setBounds(30, 98, 100, 50); 
         title.setFont(font);
+        title.setForeground(Color.white);
         f.add(title);
         JTextField t2 = new JTextField(""){
             @Override
@@ -79,6 +81,7 @@ public class GUI
         JLabel content = new JLabel("Content");
         content.setBounds(30, 178, 100, 50); 
         content.setFont(font);
+        content.setForeground(Color.white);
         f.add(content);
         JTextArea t3 = new JTextArea("");
         t3.setFont(smallfont);
@@ -109,13 +112,15 @@ public class GUI
 					mail.draftEmail(usermail, title, content);
 				} catch (MessagingException | IOException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
 				}
 				try {
 					mail.sendEmail();
 				} catch (MessagingException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JLabel label = new JLabel("Wrong Email Address!");
+					label.setFont(new Font("Mermaid", Font.PLAIN, 18));
+					JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
 				}
 		        t1.setText("");
 		        t2.setText("");
@@ -130,6 +135,7 @@ public class GUI
         f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
+        f.getContentPane().setBackground(b);
         f.setTitle("Time Reminder");
         
 	}

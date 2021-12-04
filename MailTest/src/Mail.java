@@ -39,12 +39,18 @@ public class Mail
 		String emailHost = "smtp.gmail.com";
 		Transport transport = newSession.getTransport("smtp");
 		transport.connect(emailHost, fromUser, fromUserPassword);
-		transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
-		transport.close();
-//		System.out.println("Email successfully sent!!!");
-		JLabel label = new JLabel("Email successfully sent!");
-		label.setFont(new Font("Mermaid", Font.PLAIN, 18));
-		JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
+		try {
+			transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+			transport.close();
+			JLabel label = new JLabel("Email successfully sent!");
+			label.setFont(new Font("Mermaid", Font.PLAIN, 18));
+			JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
+		}catch (NullPointerException e) {
+			JLabel label = new JLabel("EMPTY!");
+			label.setFont(new Font("Mermaid", Font.PLAIN, 18));
+			JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
+		}
+		
 	}
 
 	MimeMessage draftEmail(String usermail, String title, String content) throws AddressException, MessagingException, IOException {
