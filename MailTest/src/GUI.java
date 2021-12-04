@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,7 +28,7 @@ class RoundedButton extends JButton {
        if (getModel().isArmed()) { graphics.setColor(c.darker()); } 
        else if (getModel().isRollover()) { graphics.setColor(c.brighter()); } 
        else { graphics.setColor(c); } 
-       graphics.fillRoundRect(0, 0, width, height, 10, 10); 
+       graphics.fillRoundRect(0, 0, width, height, 0, 0); 
        FontMetrics fontMetrics = graphics.getFontMetrics(); 
        Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
        int textX = (width - stringBounds.width) / 2; 
@@ -41,32 +43,29 @@ class RoundedButton extends JButton {
  
 public class GUI
 {
-    // ∏ﬁ¿Œ 
+    // ÔøΩÔøΩÔøΩÔøΩ 
     public static void main(String args[]) throws IOException, AddressException, MessagingException
     {
-//    	Mail mail = new Mail();
-//		mail.setupServerProperties();
-//		String usermail = "nhsally@naver.com";
-//		String title = "≈∏¿Ã∆≤";
-//		String content = "ƒ‹≈Ÿ√˜";
-//		mail.draftEmail(usermail, title, content);
-//		mail.sendEmail();
     	Color b=new Color(83, 96, 120);
         JFrame f= new JFrame();
-        
+        Font font = new Font("Mermaid", Font.BOLD, 23);
+        Font smallfont = new Font("Mermaid", Font.PLAIN, 15);
         JTextField t1 = new JTextField(""){
             @Override
             public void setBorder(Border border) {
                 
             }
         };
-        JLabel email = new JLabel("∏ﬁ¿œ ¡÷º“");
-        email.setBounds(55, 50, 100, 50); 
+        JLabel email = new JLabel("Email");
+        email.setBounds(30, 18, 100, 50); 
+        email.setFont(font);
         f.add(email);
-        t1.setBounds(50, 90, 300, 40); 
+        t1.setBounds(25, 60, 350, 35); 
+        t1.setFont(smallfont);
         f.add(t1);
-        JLabel title = new JLabel("∏ﬁ¿œ ¡¶∏Ò");
-        title.setBounds(55, 140, 100, 50); 
+        JLabel title = new JLabel("Title");
+        title.setBounds(30, 98, 100, 50); 
+        title.setFont(font);
         f.add(title);
         JTextField t2 = new JTextField(""){
             @Override
@@ -74,12 +73,15 @@ public class GUI
                 
             }
         };
-        t2.setBounds(50, 180, 300, 40);
+        t2.setBounds(25, 140, 350, 35);
+        t2.setFont(smallfont);
         f.add(t2);
-        JLabel content = new JLabel("∏ﬁ¿œ ≥ªøÎ");
-        content.setBounds(55, 230, 100, 50); 
+        JLabel content = new JLabel("Content");
+        content.setBounds(30, 178, 100, 50); 
+        content.setFont(font);
         f.add(content);
         JTextArea t3 = new JTextArea("");
+        t3.setFont(smallfont);
         t3.setLineWrap(true);
         int v = JScrollPane.VERTICAL_SCROLLBAR_ALWAYS;
         int h = JScrollPane.HORIZONTAL_SCROLLBAR_NEVER ;
@@ -89,10 +91,38 @@ public class GUI
                 
             }
         };
-        scrollPane.setBounds(50, 270, 300, 200); 
+        scrollPane.setBounds(25, 220, 350, 270); 
         f.add(scrollPane);
         RoundedButton btn = new RoundedButton("send");
-        btn.setBounds(120, 500, 160, 40); 
+        btn.setBounds(265, 505, 110, 35); 
+        btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+		        Mail mail = new Mail();
+				mail.setupServerProperties();
+				String usermail = t1.getText();
+		        String title = t2.getText();
+		        String content = t3.getText();
+				try {
+					mail.draftEmail(usermail, title, content);
+				} catch (MessagingException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					mail.sendEmail();
+				} catch (MessagingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		        t1.setText("");
+		        t2.setText("");
+		        t3.setText("");
+			}
+        	
+        });
         f.add(btn);
         f.setSize(400, 600);
         f.setLayout(null);  

@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.io.*;
 import java.util.Properties;
 import java.util.Scanner;
@@ -11,13 +12,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-
-import com.mysql.cj.xdevapi.Statement;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Mail
 {
@@ -30,8 +26,8 @@ public class Mail
 //		Mail mail = new Mail();
 //		mail.setupServerProperties();
 //		String usermail = "nhsally@naver.com";
-//		String title = "Å¸ÀÌÆ²";
-//		String content = "ÄÜÅÙÃ÷";
+//		String title = "íƒ€ì´í‹€";
+//		String content = "ì½˜í…ì¸ ";
 //		mail.draftEmail(usermail, title, content);
 //		mail.sendEmail();
 	}
@@ -45,7 +41,10 @@ public class Mail
 		transport.connect(emailHost, fromUser, fromUserPassword);
 		transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
 		transport.close();
-		System.out.println("Email successfully sent!!!");
+//		System.out.println("Email successfully sent!!!");
+		JLabel label = new JLabel("Email successfully sent!");
+		label.setFont(new Font("Mermaid", Font.PLAIN, 18));
+		JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
 	}
 
 	MimeMessage draftEmail(String usermail, String title, String content) throws AddressException, MessagingException, IOException {
