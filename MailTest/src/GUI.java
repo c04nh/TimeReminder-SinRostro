@@ -158,6 +158,7 @@ public class GUI
 		        t1.setText("");
 		        t2.setText("");
 		        t3.setText("");
+		        combo.setSelectedIndex(0);
 			}
         	
         });
