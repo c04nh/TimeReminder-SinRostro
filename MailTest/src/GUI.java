@@ -153,7 +153,7 @@ public class GUI
 					// TODO Auto-generated catch block
 					JLabel label = new JLabel("Wrong Email Address!");
 					label.setFont(new Font("Serif", Font.PLAIN, 18));
-					JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
+					JOptionPane.showMessageDialog(null, label, "Sin Rostro", 1);
 				}
 		        t1.setText("");
 		        t2.setText("");
@@ -162,6 +162,8 @@ public class GUI
 			}
         	
         });
+        ImageIcon img = new ImageIcon("./img/letter.png");
+        f.setIconImage(img.getImage());
         f.add(btn);
         f.setSize(400, 600);
         f.setLayout(null);  
@@ -170,7 +172,7 @@ public class GUI
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
         f.getContentPane().setBackground(b);
-        f.setTitle("Time Reminder");
+        f.setTitle("Sin Rostro");
         
 	}
 }

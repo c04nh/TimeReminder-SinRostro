@@ -12,6 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -36,11 +37,11 @@ public class Mail
 			transport.close();
 			JLabel label = new JLabel("Email successfully sent!");
 			label.setFont(new Font("Serif", Font.PLAIN, 18));
-			JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
+			JOptionPane.showMessageDialog(null, label, "Sin Rostro", 1);
 		}catch (NullPointerException e) {
 			JLabel label = new JLabel("Empty!");
 			label.setFont(new Font("Serif", Font.PLAIN, 18));
-			JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
+			JOptionPane.showMessageDialog(null, label, "Sin Rostro", 1);
 		}
 		
 	}
