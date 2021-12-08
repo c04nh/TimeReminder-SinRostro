@@ -51,7 +51,7 @@ public class GUI
     	Color b =new Color(89, 96, 129);
     	Color c = new Color(206, 206, 206);
         JFrame f = new JFrame();
-        String [] address = {"메일 선택", "daum.net", "gmail.com", "hanmail.net", "kakao.com", "nate.com", "naver.com", "outlook.com"}; 
+        String [] address = {"메일 선택", "daum.net", "gmail.com", "hanmail.net", "kakao.com", "nate.com", "naver.com", "outlook.com", "e-mirim.hs.kr"}; 
         Font font = new Font("Serif", Font.BOLD, 23);
         Font smallfont = new Font("Serif", Font.PLAIN, 17);
         JTextField t1 = new JTextField(""){
