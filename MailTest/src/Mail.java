@@ -38,7 +38,7 @@ public class Mail
 			label.setFont(new Font("Serif", Font.PLAIN, 18));
 			JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
 		}catch (NullPointerException e) {
-			JLabel label = new JLabel("EMPTY!");
+			JLabel label = new JLabel("Empty!");
 			label.setFont(new Font("Serif", Font.PLAIN, 18));
 			JOptionPane.showMessageDialog(null, label, "Time Reminder", 1);
 		}
