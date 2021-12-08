@@ -48,7 +48,7 @@ public class GUI
 	String m;
     public static void main(String args[]) throws IOException, AddressException, MessagingException
     {
-    	Color b =new Color(83, 96, 120);
+    	Color b =new Color(89, 96, 129);
     	Color c = new Color(206, 206, 206);
         JFrame f = new JFrame();
         String [] address = {"메일 선택", "daum.net", "gmail.com", "hanmail.net", "kakao.com", "nate.com", "naver.com", "outlook.com"}; 
