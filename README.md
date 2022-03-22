@@ -1,4 +1,4 @@
-# TimeReminder
+# Time Reminder / Sin Rostro
 Mirim Software Challenge '백조'<br>
 - 메일 입력 후 제목과 내용을 작성한 뒤 SEND 버튼을 누르면 됩니다.
 - 'Email successfully sent!' 메세지가 뜨면 이메일이 성공적으로 전송된 것입니다!
